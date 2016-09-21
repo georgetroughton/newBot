@@ -82,12 +82,13 @@ bot.dialog('/', [
     },
     function (session, results) {
         session.userData.coding = results.response;
+        session.userDate.yearBegin = moment().subtract(results.response, 'years').year();
         builder.Prompts.choice(session, "What language do you code Node using?", ["JavaScript", "CoffeeScript", "TypeScript"]);
     },
     function (session, results) {
         session.userData.language = results.response.entity;
         session.send("Got it... " + session.userData.name + 
                      " you've been programming for " + session.userData.coding + 
-                     " years and use " + session.userData.language + ".");
+                     " years (since " + session.userDate.yearBegin + ") and use " + session.userData.language + ".");
     }
 ]);
