@@ -81,8 +81,9 @@ bot.dialog('/', [
         builder.Prompts.number(session, "Hi " + results.response + ", How many years have you been coding?"); 
     },
     function (session, results) {
-        session.userData.coding = results.response;
-        session.userDate.yearBegin = moment().subtract(results.response, 'years').year();
+        var years = results.response;
+        session.userData.coding = years;
+        session.userDate.yearBegin = moment().subtract(+years, 'years').year();
         builder.Prompts.choice(session, "What language do you code Node using?", ["JavaScript", "CoffeeScript", "TypeScript"]);
     },
     function (session, results) {
