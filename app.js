@@ -81,15 +81,14 @@ bot.dialog('/', [
         builder.Prompts.number(session, "Hi " + results.response + ", How many years have you been coding?"); 
     },
     function (session, results) {
-        var years = results.response;
-        session.userData.coding = years;
-        session.userDate.yearBegin = moment().subtract(+years, 'years').year();
+        session.userData.coding = results.response;
         builder.Prompts.choice(session, "What language do you code Node using?", ["JavaScript", "CoffeeScript", "TypeScript"]);
     },
     function (session, results) {
+        var yearsCoding = moment().subtract(parseInt(session.userData.coding,10), 'years').year();
         session.userData.language = results.response.entity;
         session.send("Got it... " + session.userData.name + 
                      " you've been programming for " + session.userData.coding + 
-                     " years (since " + session.userDate.yearBegin + ") and use " + session.userData.language + ".");
+                     " years (since " + yearsCoding + ") and use " + session.userData.language + ".");
     }
 ]);
