@@ -35,14 +35,14 @@ intents.matches(/^change name/i, [
     }
 ]);
 
-intents.matches(/^my age/i, [
+/*intents.matches(/^my age/i, [
     function (session) {
         session.beginDialog('/age');
     },
     function (session, results) {
         session.send('Ok... Your age is %s', session.userData.age);
     }
-]);
+]);*/
 
 intents.onDefault([
     function (session, args, next) {
@@ -67,7 +67,7 @@ bot.dialog('/profile', [
     }
 ]);
 
-bot.dialog('/age', [
+/*bot.dialog('/age', [
     function (session) {
         builder.Prompts.text(session, 'Hi! What is your dob?');
     },
@@ -77,4 +77,4 @@ bot.dialog('/age', [
         session.userData.age = age;
         session.endDialog();
     }
-]);
+]);*/
