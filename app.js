@@ -136,9 +136,22 @@ bot.dialog('/', dialog);
 dialog.matches('hireVehicle', [
     function (session, args, next) {
         // Resolve entities passed from LUIS.
-        var title;
-        var entity = builder.EntityRecognizer.findEntity(args.entities, 'vehicle');
-        session.send("You want to hire a %s", entity.entity);
+        var vehicle = builder.EntityRecognizer.findEntity(args.entities, 'vehicle');
+        session.send("You want to hire a %s", vehicle.entity);
+    }
+]);
+
+dialog.matches('buyVehicle', [
+    function (session, args, next) {
+        // Resolve entities passed from LUIS.
+        var vehicle = builder.EntityRecognizer.findEntity(args.entities, 'vehicle');
+        session.send("You want to buy a %s", vehicle.entity);
+    }
+]);
+
+dialog.matches('none', [
+    function (session, args, next) {
+        session.send("Pardon?");
     }
 ]);
 
