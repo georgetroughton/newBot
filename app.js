@@ -149,7 +149,7 @@ dialog.matches('buyVehicle', [
     }
 ]);
 
-dialog.matches('none', [
+dialog.matches('None', [
     function (session, args, next) {
         session.send("Pardon?");
     }
