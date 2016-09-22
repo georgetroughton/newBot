@@ -127,23 +127,22 @@ server.get('/', restify.serveStatic({
 }));
 
 // Create LUIS recognizer that points at our model and add it as the root '/' dialog for our Cortana Bot.
-var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=c413b2ef-382c-45bd-8ff0-f76d60e2a821&subscription-key=6d0966209c6e4f6b835ce34492f3e6d9&q=';
-/*var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=bc43820a-0610-451d-bcf4-430a7fe3a34c&subscription-key=ec8f714828204f9e97b2f188e2661edc';*/
+/*var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=c413b2ef-382c-45bd-8ff0-f76d60e2a821&subscription-key=6d0966209c6e4f6b835ce34492f3e6d9&q=';*/
+var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=bc43820a-0610-451d-bcf4-430a7fe3a34c&subscription-key=ec8f714828204f9e97b2f188e2661edc';
 var recognizer = new builder.LuisRecognizer(model);
 var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', dialog);
 
-/*dialog.matches('builtin.intent.newGTLuis.hireVehicle', [
+dialog.matches('hireVehicle', [
     function (session, args, next) {
         // Resolve entities passed from LUIS.
         var title;
         var entity = builder.EntityRecognizer.findEntity(args.entities, 'vehicle');
-
         session.send("You want to hire a %s", entity.entity);
     }
-]);*/
+]);
 
-// Add intent handlers
+/*// Add intent handlers
 dialog.matches('builtin.intent.alarm.set_alarm', [
     function (session, args, next) {
         // Resolve and store any entities passed from LUIS.
@@ -244,4 +243,4 @@ setInterval(function () {
             delete alarms[key];
         }
     }
-}, 15000);
+}, 15000);*/
